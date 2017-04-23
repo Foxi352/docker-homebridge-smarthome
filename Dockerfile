@@ -16,7 +16,7 @@ RUN apk add --no-cache --virtual .build-dependencies make g++ \
     && addgroup -S homebridge \
     && adduser -D -S -h /home/homebridge -s /sbin/nologin -G homebridge homebridge \
     && mkdir /home/homebridge/.homebridge \
-    && chown homebridge:homebridge /home/homebridge/.homebridge
+    && chown homebridge:homebridge /home/homebridge/.homebridge \
     && apk del .build-dependencies
 
 COPY config.json /home/homebridge
