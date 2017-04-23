@@ -19,6 +19,7 @@ RUN apk add --no-cache --virtual .build-dependencies make g++ \
     && chown homebridge:homebridge /home/homebridge/.homebridge \
     && apk del .build-dependencies
 
+COPY entrypoint.sh /
 COPY config.json /home/homebridge
 
 EXPOSE 5353 51826
