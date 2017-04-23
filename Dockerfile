@@ -20,11 +20,12 @@ RUN apk add --no-cache --virtual .build-dependencies make g++ \
     && mkdir /home/homebridge/.homebridge \
     && chown homebridge:homebridge /home/homebridge/.homebridge \
     && chmod a+x /entrypoint.sh \
+    && sed -i 's/#enable-dbus=yes/enable-dbus=no/g' /etc/avahi/avahi-daemon.conf \
     && apk del .build-dependencies
 
 COPY config.json /home/homebridge
 
-EXPOSE 5353 51826
+EXPOSE 5353/udp 51826
 
 ## User modifiable files
 VOLUME /home/homebridge/.homebridge
