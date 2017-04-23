@@ -11,6 +11,6 @@ if [ ! -e "$CONFIG_PATH/config.json" ]; then
 fi
 
 # Launch our main service
+dbus-daemon --system
 avahi-daemon -D
-avahi-dnsconfd -D
 su -s /bin/sh -c homebridge homebridge
