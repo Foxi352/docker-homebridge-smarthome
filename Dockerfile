@@ -10,11 +10,11 @@ LABEL   description = "Homebridge with SmartHomeNG plugin"
         maintainer = "Serge Wagener serge@wagener.family"
 
 ## Install SmartHomeNG and needed dependencies
-RUN apk add --no-cache virtual .build-dependencies make g++ \
+RUN apk add --no-cache --virtual .build-dependencies make g++ \
     && apk add --no-cache nodejs avahi avahi-compat-libdns_sd avahi-dev \
     && npm install -g homebridge homebridge-smarthomeng --unsafe-perm \
     && addgroup -S homebridge \
-    && adduser -D -S -m -d /home/homebridge -s /sbin/nologin -G homebridge homebridge \
+    && adduser -D -S -h /home/homebridge -s /sbin/nologin -G homebridge homebridge \
     && apk del .build-dependencies
 
 ## WebSocket, Backend
