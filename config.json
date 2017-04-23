@@ -1,0 +1,33 @@
+{
+    "bridge": {
+        "name": "SmartHomeNG",
+        "username": "CC:23:1D:E4:CE:32",
+        "port": 51826,
+        "pin": "031-45-154"
+    },
+
+    "platforms": [
+        {
+            "platform": "SmartHomeNG",
+             
+            "name": "SmartHomeNG",
+            "host": "shng-smarthome",
+            "accessories": [
+                {
+                    "name": "Licht Büro",
+                    "type": "Lightbulb",
+                    "onoff": "EG.Buero.Licht"
+                },
+                {
+                    "name": "Rolladen Büro",
+                    "type": "WindowCovering",
+                    "updown": "EG.Buero.Rolladen.AufAb",
+                    "currentposition": "EG.Buero.Rolladen.Position",
+                    "targetposition": "EG.Buero.Rolladen.Position",
+                    "inverted": true
+                }
+            ]
+        }
+    ],
+    "description": "This is an example config file."
+}

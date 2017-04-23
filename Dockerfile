@@ -15,12 +15,15 @@ RUN apk add --no-cache --virtual .build-dependencies make g++ \
     && npm install -g homebridge homebridge-smarthomeng --unsafe-perm \
     && addgroup -S homebridge \
     && adduser -D -S -h /home/homebridge -s /sbin/nologin -G homebridge homebridge \
+    && mkdir /home/homebridge/.homebridge \
+    && chown homebridge:homebridge /home/homebridge/.homebridge
     && apk del .build-dependencies
 
-## WebSocket, Backend
-#EXPOSE 2424 8383
+COPY config.json /home/homebridge
+
+EXPOSE 5353 51826
 
 ## User modifiable files
-#VOLUME /var/www/html /usr/local/smarthome/etc /usr/local/smarthome/items /usr/local/smarthome/logics /usr/local/smarthome/scenes
+VOLUME /home/homebridge/.homebridge
 
 ENTRYPOINT ["/entrypoint.sh"]
