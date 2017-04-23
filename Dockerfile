@@ -9,6 +9,8 @@ FROM python:2-alpine
 LABEL   description = "Homebridge with SmartHomeNG plugin"
         maintainer = "Serge Wagener serge@wagener.family"
 
+COPY entrypoint.sh /
+
 ## Install SmartHomeNG and needed dependencies
 RUN apk add --no-cache --virtual .build-dependencies make g++ \
     && apk add --no-cache nodejs avahi avahi-compat-libdns_sd avahi-dev \
@@ -17,9 +19,9 @@ RUN apk add --no-cache --virtual .build-dependencies make g++ \
     && adduser -D -S -h /home/homebridge -s /sbin/nologin -G homebridge homebridge \
     && mkdir /home/homebridge/.homebridge \
     && chown homebridge:homebridge /home/homebridge/.homebridge \
+    && chmod a+x /entrypoint.sh \
     && apk del .build-dependencies
 
-COPY entrypoint.sh /
 COPY config.json /home/homebridge
 
 EXPOSE 5353 51826
