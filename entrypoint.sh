@@ -8,7 +8,6 @@ if [ ! -e "$CONFIG_PATH/config.json" ]; then
     cp $EXAMPLES_PATH/config.json $CONFIG_PATH/; 
 fi
 
-# Launch our main service, preferably in debug mode as it should stay in foreground
+# Launch our main service
 su -s /bin/sh -c homebridge homebridge
-$SHNG_PATH/bin/smarthome.py "$ARGS"
 
